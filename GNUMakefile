@@ -1,4 +1,4 @@
-#Makefile
+#GNUMakefile
 #Quinton Graham
 #used for testing the chess game functions
 
@@ -9,15 +9,13 @@ CC = g++
 INCLUDE = -I./include
 
 #source files
-#GNU Make
-#SRCS = $(wildcard *.cpp) $(wildcard src/*.cpp)
-#Windows non-GNU make
-SRCS := system()
+SRCS = $(wildcard *.cpp) $(wildcard src/*.cpp)
 
-
+#output file
+OUT = chess.exe
 
 #full flags
 FLAGS = $(INCLUDE)
 
 all: 
-	echo $(INCLUDE)
+	$(CC) $(SRCS) $(FLAGS) -o $(OUT)
