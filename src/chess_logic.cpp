@@ -30,10 +30,20 @@ bool is_valid_move(const unsigned char board[8][8], int current_x, int current_y
         case BISHOP:
             break;
         case KNIGHT:
+            if(!(get_diff(current_x, new_x) == 2 && get_diff(current_y, new_y) == 1))\
+            || !(get_diff(current_x, new_x) == 1 && get_diff(current_y, new_y) == 2)))
+            {
+                return false;
+            }
             break;
         case QUEEN:
             break;
         case KING:
+            /* -- Check for castling here!!! -- */
+            if(get_diff(current_x, new_x) > 1 || get_diff(current_y, new_y) > 1)
+            {
+                return false;
+            }
             break;
         default:
             /* -- location for future implementation of custom pieces -- */
@@ -154,6 +164,17 @@ unsigned char get_king(const unsigned char board[8][8], unsigned char player)
     }
 
     return 0x00;
+}
+
+//Function to get the absolute value of the difference between two numbers
+int get_diff(int num_1, int num_2)
+{
+    int diff = num_1 - num_2;
+    if(diff < 0)
+    {
+        return diff - diff - diff
+    }
+    return diff
 }
 
 //Function that returns a new proposed board layout
