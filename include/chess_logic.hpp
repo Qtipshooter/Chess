@@ -16,6 +16,12 @@ bool is_check(const unsigned char board[8][8], unsigned char player);
 //Function to check if a player is in checkmate
 bool is_checkmate(const unsigned char board[8][8], unsigned char player);
 
+//Function to see if a piece has a valid move
+bool has_valid_move(const unsigned char board[8][8], int current_x, int current_y);
+
+//Function to locate the King of a particular player
+unsigned char get_king(const unsigned char board[8][8], unsigned char player);
+
 //Function that returns a new proposed board layout
 unsigned char*** get_proposed_board(const unsigned char board[8][8], int current_x, int current_y, int new_x, int new_y);
 
