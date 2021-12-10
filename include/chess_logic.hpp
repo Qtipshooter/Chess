@@ -19,6 +19,9 @@ bool is_vertical(int current_x, int current_y, int new_x, int new_y);
 //Function to see if a position is directly diagonal
 bool is_diagonal(int current_x, int current_y, int new_x, int new_y);
 
+//Function to check if a move is blocked by a piece
+bool is_blocked(int current_x, int current_y, int new_x, int new_y);
+
 //Function to check if a player is in check
 bool is_check(const unsigned char board[8][8], unsigned char player);
 
