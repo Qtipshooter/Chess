@@ -26,12 +26,36 @@ bool is_valid_move(const unsigned char board[8][8], int current_x, int current_y
 		case PAWN:
 			break;
 		case ROOK:
+			if(!is_horizontal(current_x, current_y, new_x, new_y) && !is_vertical(current_x, current_y, new_x, new_y))
+			{
+				return false;
+			}
+			if(is_blocked(board, current_x, current_y, new_x, new_y))
+			{
+				return false;
+			}
 			break;
 		case BISHOP:
+			if(!is_diagonal(current_x, current_y, new_x, new_y))
+			{
+				return false;
+			}
+			if(is_blocked(board, current_x, current_y, new_x, new_y))
+			{
+				return false;
+			}
 			break;
 		case KNIGHT:
 			break;
 		case QUEEN:
+			if(!is_horizontal(current_x, current_y, new_x, new_y) && !is_vertical(current_x, current_y, new_x, new_y) && !is_diagonal(current_x, current_y, new_x, new_y))
+			{
+				return false;
+			}
+			if(is_blocked(board, current_x, current_y, new_x, new_y))
+			{
+				return false;
+			}
 			break;
 		case KING:
 			break;
@@ -91,7 +115,7 @@ bool is_diagonal(int current_x, int current_y, int new_x, int new_y)
 }
 
 //Function to check if a move is blocked by a piece
-bool is_blocked(unsigned char board[8][8], int current_x, int current_y, int new_x, int new_y)
+bool is_blocked(const unsigned char board[8][8], int current_x, int current_y, int new_x, int new_y)
 {
 	if(is_horizontal(current_x, current_y, new_x, new_y)) 
 	{
@@ -105,7 +129,7 @@ bool is_blocked(unsigned char board[8][8], int current_x, int current_y, int new
 				}
 				else if(board[x][current_y] != 0x00) 
 				{
-					return false;
+					return true;
 				}
 			}
 		}
@@ -119,12 +143,12 @@ bool is_blocked(unsigned char board[8][8], int current_x, int current_y, int new
 				}
 				else if(board[x][current_y] != 0x00) 
 				{
-					return false;
+					return true;
 				}
 			}
 		}
 	}
-	else 
+	else if(is_vertical(current_x, current_y, new_x, new_y))
 	{
 		if(current_y < new_y) 
 		{
@@ -136,7 +160,7 @@ bool is_blocked(unsigned char board[8][8], int current_x, int current_y, int new
 				}
 				else if(board[current_x][y] != 0x00) 
 				{
-					return false;
+					return true;
 				}
 			}
 		}
@@ -150,10 +174,85 @@ bool is_blocked(unsigned char board[8][8], int current_x, int current_y, int new
 				}
 				else if(board[current_x][y] != 0x00) 
 				{
-					return false;
+					return true;
 				}
 			}
 		}
+	}
+	else //is_diagonal
+	{
+		bool asc_x = false;
+		bool asc_y = false;
+		if(current_x < new_x)
+		{
+			asc_x = true;
+		}
+		if(current_y < new_y)
+		{
+			asc_y = true;
+		}
+		
+		if (asc_x && asc_y)
+		{
+			for (int x = current_x, int y = current_y; x < new_x; x++, y++)
+			{
+				if(current_x == x)
+				{
+					continue;
+				}
+				if(board[x][y] != 0x00)
+				{
+					return true;
+				}
+			}
+			
+		}
+		else if (asc_x && !asc_y)
+		{
+			for (int x = current_x, int y = current_y; x < new_x; x++, y--)
+			{
+				if(current_x == x)
+				{
+					continue;
+				}
+				if(board[x][y] != 0x00)
+				{
+					return true;
+				}
+			}
+			
+		}
+		else if (!asc_x && asc_y)
+		{
+			for (int x = current_x, int y = current_y; x > new_x; x--, y++)
+			{
+				if(current_x == x)
+				{
+					continue;
+				}
+				if(board[x][y] != 0x00)
+				{
+					return true;
+				}
+			}
+			
+		}
+		else
+		{
+			for (int x = current_x, int y = current_y; x > new_x; x--, y--)
+			{
+				if(current_x == x)
+				{
+					continue;
+				}
+				if(board[x][y] != 0x00)
+				{
+					return true;
+				}
+			}
+			
+		}
+		
 	}
 }
 
