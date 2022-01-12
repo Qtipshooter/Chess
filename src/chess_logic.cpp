@@ -9,8 +9,8 @@
 bool is_valid_move(const unsigned char board[8][8], int current_x, int current_y, int new_x, int new_y)
 {
     //get variables for the tests
-    unsigned char player = board[current_x][current_y] & 0x60;
-    unsigned char piece  = board[current_x][current_y] & 0x0f;
+    unsigned char player = board[current_x][current_y] & PLAYER_MASK;
+    unsigned char piece  = board[current_x][current_y] & PIECE_MASK;
     unsigned char moved  = board[current_x][current_y] & MOVED;
 
     //check if destination location is an ally piece
