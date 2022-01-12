@@ -19,8 +19,10 @@
 #define MOVED       0x10
 
 //Definitions for player 1 and player 2
-#define PLAYER_MASK 0x60
-#define PLAYER_1    0x20
-#define PLAYER_2    0x40
+#define PLAYER_MASK     0x60
+#define PLAYER_1        0x20
+#define PLAYER_WHITE    0x20
+#define PLAYER_2        0x40
+#define PLAYER_BLACK    0x40
 
 #endif //CHESS_DEFINITIONS_HPP
