@@ -4,9 +4,15 @@
 
 #include "definitions.hpp"
 #include "chess_logic.hpp"
+#include <iostream>
 
 int main(int argc, char * argv[])
 
 {
+    unsigned char board[8][8];
+    print_board_to_cmd_line(board);
+    std::cout << std::endl;
+    set_to_initial_board(board);
+    print_board_to_cmd_line(board);
     return 0;
 }

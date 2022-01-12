@@ -34,7 +34,21 @@ bool has_valid_move(const unsigned char board[8][8], int current_x, int current_
 //Function to locate the King of a particular player
 unsigned char get_king(const unsigned char board[8][8], unsigned char player);
 
+//Function to get the absolute value of the difference between two numbers
+int get_diff(int num_1, int num_2);
+
 //Function that returns a new proposed board layout
 unsigned char*** get_proposed_board(const unsigned char board[8][8], int current_x, int current_y, int new_x, int new_y);
+
+
+/* piece manipulation functions */
+
+//function to set the board to the initial setup of the game
+void set_to_initial_board(unsigned char board[8][8]);
+
+/* testing functions */
+
+//function to print the board to the command line
+void print_board_to_cmd_line(const unsigned char board[8][8]);
 
 #endif // GAME_LOGIC_HPP

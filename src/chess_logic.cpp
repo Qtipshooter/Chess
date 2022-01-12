@@ -4,6 +4,7 @@
 
 #include "definitions.hpp"
 #include "chess_logic.hpp"
+#include <iostream>
 
 //Function to check if a move is valid
 bool is_valid_move(const unsigned char board[8][8], int current_x, int current_y, int new_x, int new_y)
@@ -200,7 +201,7 @@ bool is_blocked(const unsigned char board[8][8], int current_x, int current_y, i
         
         if (asc_x && asc_y)
         {
-            for (int x = current_x, int y = current_y; x < new_x; x++, y++)
+            for (int x = current_x, y = current_y; x < new_x; x++, y++)
             {
                 if(current_x == x)
                 {
@@ -211,11 +212,10 @@ bool is_blocked(const unsigned char board[8][8], int current_x, int current_y, i
                     return true;
                 }
             }
-            
         }
         else if (asc_x && !asc_y)
         {
-            for (int x = current_x, int y = current_y; x < new_x; x++, y--)
+            for (int x = current_x, y = current_y; x < new_x; x++, y--)
             {
                 if(current_x == x)
                 {
@@ -226,11 +226,10 @@ bool is_blocked(const unsigned char board[8][8], int current_x, int current_y, i
                     return true;
                 }
             }
-            
         }
         else if (!asc_x && asc_y)
         {
-            for (int x = current_x, int y = current_y; x > new_x; x--, y++)
+            for (int x = current_x, y = current_y; x > new_x; x--, y++)
             {
                 if(current_x == x)
                 {
@@ -241,11 +240,10 @@ bool is_blocked(const unsigned char board[8][8], int current_x, int current_y, i
                     return true;
                 }
             }
-            
         }
         else
         {
-            for (int x = current_x, int y = current_y; x > new_x; x--, y--)
+            for (int x = current_x, y = current_y; x > new_x; x--, y--)
             {
                 if(current_x == x)
                 {
@@ -256,9 +254,7 @@ bool is_blocked(const unsigned char board[8][8], int current_x, int current_y, i
                     return true;
                 }
             }
-            
         }
-        
     }
 }
 
@@ -344,4 +340,106 @@ unsigned char*** get_proposed_board(const unsigned char board[8][8], int current
 {
 
     //return
+}
+
+/* piece manipulation functions */
+
+//function to set the board to the initial setup of the game
+void set_to_initial_board(unsigned char board[8][8])
+{
+    //setup white pieces
+    board[0][0] = PLAYER_WHITE | ROOK;
+    board[1][0] = PLAYER_WHITE | KNIGHT;
+    board[2][0] = PLAYER_WHITE | BISHOP;
+    board[3][0] = PLAYER_WHITE | QUEEN;
+    board[4][0] = PLAYER_WHITE | KING;
+    board[5][0] = PLAYER_WHITE | BISHOP;
+    board[6][0] = PLAYER_WHITE | KNIGHT;
+    board[7][0] = PLAYER_WHITE | ROOK;
+    for (int i = 0; i < 8; i++)
+    {
+        board[i][1] = PLAYER_WHITE | PAWN;
+    }
+    
+    //setup black pieces
+    board[0][7] = PLAYER_BLACK | ROOK;
+    board[1][7] = PLAYER_BLACK | KNIGHT;
+    board[2][7] = PLAYER_BLACK | BISHOP;
+    board[3][7] = PLAYER_BLACK | QUEEN;
+    board[4][7] = PLAYER_BLACK | KING;
+    board[5][7] = PLAYER_BLACK | BISHOP;
+    board[6][7] = PLAYER_BLACK | KNIGHT;
+    board[7][7] = PLAYER_BLACK | ROOK;
+    for (int i = 0; i < 8; i++)
+    {
+        board[i][6] = PLAYER_BLACK | PAWN;
+    }
+    
+    //remove all other pieces
+    for (int x = 0; x < 8; x++)
+    {
+        for (int y = 2; y < 6; y++)
+        {
+            board[x][y] = 0x00;
+        }
+    }
+    return;
+}
+
+/* testing functions */
+
+//function to print the board to the command line
+void print_board_to_cmd_line(const unsigned char board[8][8])
+{
+    for(int y = 7; y >= 0; y--)
+    {
+        for(int x = 0; x < 8; x++)
+        {
+            std::cout << "|";
+            unsigned char player = board[x][y] & PLAYER_MASK;
+            unsigned char piece = board[x][y] & PIECE_MASK;
+            
+            //color marker
+            if(player == PLAYER_WHITE)
+            {
+                std::cout << "W";
+            }
+            else if(player == PLAYER_BLACK)
+            {
+                std::cout << "B";
+            }
+            else
+            {
+                std::cout << "_";
+            }
+            
+            //piece marker
+            switch (piece)
+            {
+            case PAWN:
+                std::cout << "P";
+                break;
+            case ROOK:
+                std::cout << "R";
+                break;
+            case KNIGHT:
+                std::cout << "N";
+                break;
+            case BISHOP:
+                std::cout << "B";
+                break;
+            case QUEEN:
+                std::cout << "Q";
+                break;
+            case KING:
+                std::cout << "K";
+                break;
+            default:
+                std::cout << "_";
+                break;
+            }
+        }
+        
+        std::cout << "|\n|--|--|--|--|--|--|--|--|\n";
+    }
 }
