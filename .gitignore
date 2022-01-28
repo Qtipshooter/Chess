@@ -3,3 +3,39 @@
 
 #vs code files
 .vscode*
+
+#SDL2 Files that are unpacked
+libfreetype-6.dll
+libjpeg-9.dll
+libpng16-16.dll
+libtiff-5.dll
+libwebp-7.dll
+LICENSE.freetype.txt
+LICENSE.jpeg.txt
+LICENSE.png.txt
+LICENSE.tiff.txt
+LICENSE.webp.txt
+LICENSE.zlib.txt
+SDL2.dll
+SDL2_image.dll
+SDL2_ttf.dll
+temp.txt
+zlib1.dll
+
+#Allow the lower level copies of these files
+!lib/*/libfreetype-6.dll
+!lib/*/libjpeg-9.dll
+!lib/*/libpng16-16.dll
+!lib/*/libtiff-5.dll
+!lib/*/libwebp-7.dll
+!lib/*/LICENSE.freetype.txt
+!lib/*/LICENSE.jpeg.txt
+!lib/*/LICENSE.png.txt
+!lib/*/LICENSE.tiff.txt
+!lib/*/LICENSE.webp.txt
+!lib/*/LICENSE.zlib.txt
+!lib/*/SDL2.dll
+!lib/*/SDL2_image.dll
+!lib/*/SDL2_ttf.dll
+!lib/*/temp.txt
+!lib/*/zlib1.dll
