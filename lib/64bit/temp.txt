@@ -1,0 +1,16 @@
+libfreetype-6.dll
+libjpeg-9.dll
+libpng16-16.dll
+libtiff-5.dll
+libwebp-7.dll
+LICENSE.freetype.txt
+LICENSE.jpeg.txt
+LICENSE.png.txt
+LICENSE.tiff.txt
+LICENSE.webp.txt
+LICENSE.zlib.txt
+SDL2.dll
+SDL2_image.dll
+SDL2_ttf.dll
+temp.txt
+zlib1.dll

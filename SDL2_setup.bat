@@ -1,0 +1,14 @@
+@echo off
+
+IF EXIST "%PROGRAMFILES(X86)%" (GOTO 64BIT) ELSE (GOTO 32BIT)
+
+:64BIT
+XCOPY "lib\64bit\*" .
+GOTO END
+
+:32BIT
+XCOPY "lib\32bit\* .
+GOTO END
+
+:END
+ECHO Complete
