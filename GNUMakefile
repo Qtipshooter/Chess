@@ -11,11 +11,17 @@ INCLUDE = -I./include
 #source files
 SRCS = $(wildcard *.cpp) $(wildcard src/*.cpp)
 
+#library directory
+LIB_DIR = -L.
+
+#libraries
+LIBS = -lmingw32 -lSDL2 -lSDL2_image -lSDL2_ttf
+
 #output file
 OUT = chess.exe
 
 #full flags
-FLAGS = $(INCLUDE)
+FLAGS = $(INCLUDE) $(LIB_DIR) $(LIBS)
 
 all: 
 	$(CC) $(SRCS) $(FLAGS) -o $(OUT)

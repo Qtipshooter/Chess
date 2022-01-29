@@ -4,9 +4,13 @@
 
 #include "definitions.hpp"
 #include "chess_logic.hpp"
+
+#define SDL_MAIN_HANDLED
+#include <SDL2/SDL.h>
+
 #include <iostream>
 
-int main(int argc, char * argv[])
+int main(int argc, const char * argv[])
 
 {
     unsigned char board[8][8];
