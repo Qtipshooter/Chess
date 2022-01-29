@@ -1,9 +1,13 @@
-//game_logic.hpp
+//chess_logic.hpp
 //Quinton Graham
 //Handles the logic of the the game such as valid moves, check, mate, etc.
 
 #ifndef GAME_LOGIC_HPP
 #define GAME_LOGIC_HPP
+
+#include "definitions.hpp"
+
+#include <iostream>
 
 /* informative functions */
 
